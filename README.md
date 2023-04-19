@@ -15,4 +15,8 @@
 
 
 ## Process:
-**1. Join 6 data sets together
+**1. Cleaning data**
+  Join 6 data sets together to make a uniform data sets
+  
+**2. Separate dates and time for analysis**
+
