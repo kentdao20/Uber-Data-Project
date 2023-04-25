@@ -214,3 +214,15 @@ ggplot(prediction_model, aes(x = month, y = Total_Trips, color = factor(day =="S
   scale_color_manual(values = c("darkblue", "violet"), guide = "none")+
   labs(color = "day == Sat")
 
+#leaflet 
+
+leaflet <- df_data %>%
+  group_by(Lat, Lon) %>%
+  summarise(Trips = n())
+
+ 
+leaflet_busy_loc <- leaflet[order(-leaflet$Trips), ] %>%
+  head(n=10)
+
+write.csv(leaflet_busy_loc, "leaflet_busy_loc.csv", row.names = FALSE)
+

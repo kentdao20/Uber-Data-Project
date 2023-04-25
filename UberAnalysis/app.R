@@ -13,6 +13,7 @@ library(tidyverse)
 library(rsconnect)
 library(ggplot2)
 library(modelr)
+library(leaflet)
 
 getwd()
 
@@ -127,8 +128,9 @@ ui<-fluidPage(
     ),
     tabPanel("Leaflet map",
              div(style = "text-align: center;",
-                 h1("Top 10 busiest spot "),
-                 p("")
+                 h1("Top 10 busiest spot"),
+                 p(""),
+                 leafletOutput('map', height = "675px")
     
     
   )
@@ -201,6 +203,11 @@ server<-function(input,output){
     scale_fill_gradient(low="lightblue", high="darkblue") +
     ggtitle("Heat Map by Month and Day")
   
+  leaflet_loc <-
+    leaflet(leaflet_busy_loc) %>% 
+    addTiles() %>% 
+    addMarkers(lng = leaflet_busy_loc$Lon, lat = leaflet_busy_loc$Lat, label = leaflet_busy_loc$Trips)
+  
   output$plot1 = renderPlot({day_and_hour_chart})
   output$plot2 = renderPlot({day_group_chart})
   output$plot3 = renderPlot({day_month_group_chart})
@@ -212,6 +219,7 @@ server<-function(input,output){
   output$plot9 = renderPlot({month_weekday_chart})
   output$plot10 = renderPlot({day_month_group_heat})
   output$plot11 = renderPlot({prediction_model_chart})
+  output$map = renderLeaflet({leaflet_loc})
 }
 
 
