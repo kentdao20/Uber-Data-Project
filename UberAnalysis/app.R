@@ -15,16 +15,17 @@ library(ggplot2)
 
 getwd()
 
-
+day_and_hour <- read.csv("day_and_hour.csv")
 day_group <- read.csv("day_group.csv")
 day_month_group <- read.csv("day_month_group.csv")
+day0fweek_bases <- read.csv("day0fweek_bases.csv")
 hour_data <- read.csv("hour_data.csv")
+month_base <- read.csv("month_base.csv")
 month_group <- read.csv("month_group.csv")
 month_hour <- read.csv("month_hour.csv")
 month_weekday <- read.csv("month_weekday.csv")
 prediction_model <- read.csv("prediction_model.csv")
 
-# Define UI for application that draws a histogram
 ui <- fluidPage(
   titlePanel("Uber Data"),
   sidebarLayout(
@@ -38,12 +39,12 @@ ui <- fluidPage(
   )
 )
 
-# Define server logic required to draw a histogram
+
 server <- function(input, output)
 {
   
   
-  # Reactive data based on selected data
+
   selected_data <- reactive({
     switch(input$data_select,
            "day_group" = day_group,

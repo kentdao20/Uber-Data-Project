@@ -155,7 +155,7 @@ day_and_hour <- df_data %>%
   group_by(day, hour) %>%
   dplyr::summarize(Total = n())
 
-write.csv(month_hour, "month_hour.csv", row.names = FALSE)
+write.csv(day_and_hour, "day_and_hour.csv", row.names = FALSE)
 
 ggplot(day_and_hour, aes(day, hour, fill = Total)) +
   geom_tile(color = "white") +
@@ -181,9 +181,7 @@ month_base <-  df_data %>%
   group_by(Base, month) %>%
   dplyr::summarize(Total = n()) 
 
-day0fweek_bases <-  df_data %>%
-  group_by(Base, dayofweek) %>%
-  dplyr::summarize(Total = n()) 
+write.csv(month_base, "month_base.csv", row.names = FALSE)
 
 ggplot(month_base, aes(Base, month, fill = Total)) +
   geom_tile(color = "white") +
@@ -191,6 +189,12 @@ ggplot(month_base, aes(Base, month, fill = Total)) +
   ggtitle("Heat Map by Month and Bases")
 
 #month and bases
+
+day0fweek_bases <-  df_data %>%
+  group_by(Base, dayofweek) %>%
+  dplyr::summarize(Total = n()) 
+
+write.csv(day0fweek_bases, "day0fweek_bases.csv", row.names = FALSE)
 
 ggplot(day0fweek_bases, aes(Base, dayofweek, fill = Total)) +
   geom_tile(color = "white") +
