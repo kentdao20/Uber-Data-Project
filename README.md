@@ -238,4 +238,4 @@ ggplot(prediction_model, aes(x = month, y = Total_Trips, color = factor(day =="S
   scale_color_manual(values = c("darkblue", "violet"), guide = "none")+
   labs(color = "day == Sat")
 ```
-[ShinyApp] (https://www.shinyapps.io/)
+[ShinyApp] (https://kienkcp.shinyapps.io/UberAnalysis/)
