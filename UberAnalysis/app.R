@@ -27,7 +27,7 @@ month_group <- read.csv("month_group.csv")
 month_hour <- read.csv("month_hour.csv")
 month_weekday <- read.csv("month_weekday.csv")
 prediction_model <- read.csv("prediction_model.csv")
-
+leaflet_busy_loc <- read.csv("leaflet_busy_loc.csv")
 
 ui<-fluidPage( 
   
@@ -131,11 +131,10 @@ ui<-fluidPage(
                  h1("Top 10 busiest spot"),
                  p(""),
                  leafletOutput('map', height = "675px")
-    
-    
+             )
+    )
   )
 )
-))
 
 
 server<-function(input,output){
